@@ -1,6 +1,7 @@
 import express from "express";
 import { pool } from "./db.js";
 import { PORT } from "./config.js";
+const sql = require("sql-template-strings");
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.get("/ping", async (req, res) => {
 });
 
 app.post("/create", async (req, res) => {
-  const name = req.body.name;
+  let name = req.body.name;
   const result = await pool.query(`INSERT INTO users(name) VALUES ('${name}')`);
 
   res.status(201).json(result);
