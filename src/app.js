@@ -19,11 +19,10 @@ app.get("/hemocentros", async (req, res) => {
 });
 
 app.get("/hemocentros/:uf", async (req, res) => {
-  const cidade = req.params.cidade;
-  const [rows] = await pool.query(
-    "SELECT * FROM Hemocentros where cidade = ?",
-    [cidade]
-  );
+  const uf = req.params.uf;
+  const [rows] = await pool.query("SELECT * FROM Hemocentros where uf = ?", [
+    uf,
+  ]);
   res.json(rows);
 });
 
