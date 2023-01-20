@@ -6,7 +6,9 @@ const app = express();
 
 app.get("/:id", async (req, res) => {
   const id = parseInt(req.params.id);
-  const [rows] = await pool.query("SELECT * FROM Doadores where = ?", [id]);
+  const [rows] = await pool.query("SELECT * FROM Doadores where doadorID = ?", [
+    id,
+  ]);
   res.json(rows);
 });
 
