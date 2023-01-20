@@ -18,6 +18,15 @@ app.get("/hemocentros", async (req, res) => {
   res.json(rows);
 });
 
+app.get("/hemocentros/:cidade", async (req, res) => {
+  const cidade = req.params.cidade;
+  const [rows] = await pool.query(
+    "SELECT * FROM Hemocentros where cidade = ?",
+    [cidade]
+  );
+  res.json(rows);
+});
+
 app.get("/doacoes/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   const [rows] = await pool.query("SELECT * FROM Doacoes where doacaoID = ?", [
