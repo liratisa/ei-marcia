@@ -18,7 +18,7 @@ app.get("/hemocentros", async (req, res) => {
   res.json(rows);
 });
 
-app.get("/hemocentros/:cidade", async (req, res) => {
+app.get("/hemocentros/:uf", async (req, res) => {
   const cidade = req.params.cidade;
   const [rows] = await pool.query(
     "SELECT * FROM Hemocentros where cidade = ?",
