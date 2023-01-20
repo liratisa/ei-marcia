@@ -4,6 +4,12 @@ import { PORT } from "./config.js";
 
 const app = express();
 
+app.get("/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  const [rows] = await pool.query("SELECT * FROM Doadores where = ?", [id]);
+  res.json(rows);
+});
+
 app.get("/", async (req, res) => {
   const [rows] = await pool.query("SELECT * FROM users");
   res.json(rows);
