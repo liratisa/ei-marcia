@@ -60,7 +60,7 @@ app.post("/criarDoador", async (req, res) => {
   const doenca = req.body.doenca;
 
   const result = await pool.query(
-    "INSERT INTO Doadores(nome, endereco, numero, bairro, cep, cidade, uf, telefone, vacina, idade, tipoSanguineo, sexo, doenca) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO Doadores(nome, endereco, numero, bairro, cep, cidade, uf, telefone, vacina, idade, tipoSanguineo, sexo, doenca) VALUES (?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?)",
     [
       nome,
       end,
