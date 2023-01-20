@@ -35,11 +35,45 @@ app.get("/ping", async (req, res) => {
   res.json(result[0]);
 });
 
-app.post("/create", async (req, res) => {
-  const name = req.body.name;
-  const result = await pool.query("INSERT INTO users(name) VALUES (?)", [name]);
+app.post("/criarDoador", async (req, res) => {
+  const nome = req.body.nome;
+  const logradouro = req.body.logradouro;
+  const end = req.body.endereco;
+  const num = req.body.numero;
+  const bairro = req.body.bairro;
+  const cep = req.body.cep;
+  const cidade = req.body.cidade;
+  const uf = req.body.uf;
+  const tel = req.body.telefone;
+  const vac = req.body.vacina;
+  const cpf = req.body.cpf;
+  const idade = req.body.idade;
+  const email = req.body.email;
+  const tipoSanguineo = req.body.tipoSanguineo;
+  const sexo = req.body.sexo;
 
-  res.json(result);
+  const result = await pool.query(
+    "INSERT INTO Doadores(nome, logradouro, endereco, numero, bairro, cep, cidade, uf, telefone, vacina, cpf, idade, email, tipoSanguineo, sexo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?)",
+    [
+      nome,
+      logradouro,
+      end,
+      num,
+      bairro,
+      cep,
+      cidade,
+      uf,
+      tel,
+      vac,
+      cpf,
+      idade,
+      email,
+      tipoSanguineo,
+      sexo,
+    ]
+  );
+
+  res.json([result]);
 });
 
 app.listen(PORT);
