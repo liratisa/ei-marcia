@@ -3,6 +3,7 @@ import { pool } from "./db.js";
 import { PORT } from "./config.js";
 
 const app = express();
+app.use(express.json());
 
 app.get("/doadores/:id", async (req, res) => {
   const id = parseInt(req.params.id);
