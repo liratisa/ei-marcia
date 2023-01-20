@@ -78,7 +78,7 @@ app.post("/criarDoador", async (req, res) => {
     ]
   );
 
-  res.json([result]);
+  res.json(result);
 });
 
 app.post("/cadastrarDoacao", async (req, res) => {
