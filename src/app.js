@@ -54,14 +54,13 @@ app.post("/criarDoador", async (req, res) => {
   const uf = req.body.uf;
   const tel = req.body.telefone;
   const vac = req.body.vacina;
-  const cpf = req.body.cpf;
   const idade = req.body.idade;
   const tipoSanguineo = req.body.tipoSanguineo;
   const sexo = req.body.sexo;
   const doenca = req.body.doenca;
 
   const result = await pool.query(
-    "INSERT INTO Doadores(nome, endereco, numero, bairro, cep, cidade, uf, telefone, vacina, cpf, idade, tipoSanguineo, sexo, doenca) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO Doadores(nome, endereco, numero, bairro, cep, cidade, uf, telefone, vacina, idade, tipoSanguineo, sexo, doenca) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?)",
     [
       nome,
       end,
@@ -72,7 +71,6 @@ app.post("/criarDoador", async (req, res) => {
       uf,
       tel,
       vac,
-      cpf,
       idade,
       tipoSanguineo,
       sexo,
