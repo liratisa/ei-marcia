@@ -36,10 +36,10 @@ app.get("/ping", async (req, res) => {
 });
 
 app.post("/create", async (req, res) => {
-  const name = req.body;
+  const name = req.body.name;
   const result = await pool.query("INSERT INTO users(name) VALUES (?)", [name]);
 
-  response.json(result);
+  res.json(result);
 });
 
 app.listen(PORT);
