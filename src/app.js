@@ -4,9 +4,22 @@ import { PORT } from "./config.js";
 
 const app = express();
 
-app.get("/:id", async (req, res) => {
+app.get("/doadores/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   const [rows] = await pool.query("SELECT * FROM Doadores where doadorID = ?", [
+    id,
+  ]);
+  res.json(rows);
+});
+
+app.get("/hemocentros", async (req, res) => {
+  const [rows] = await pool.query("SELECT * FROM Hemocentros");
+  res.json(rows);
+});
+
+app.get("/doacoes/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  const [rows] = await pool.query("SELECT * FROM Doacoes where doacaoID = ?", [
     id,
   ]);
   res.json(rows);
@@ -23,7 +36,7 @@ app.get("/ping", async (req, res) => {
 });
 
 app.post("/create", async (req, res) => {
-  const name = request.body;
+  const name = req.body;
   const result = await pool.query("INSERT INTO users(name) VALUES (?)", [name]);
 
   response.json(result);
