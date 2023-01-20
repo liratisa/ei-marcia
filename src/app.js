@@ -15,13 +15,13 @@ app.get("/ping", async (req, res) => {
   res.json(result[0]);
 });
 
-app.post("/create", async (req, res) => {
+app.post("/create", async (request, response) => {
   const name = request.body;
   const result = await pool.query("INSERT INTO users(name) VALUES ($1)", [
     name,
   ]);
 
-  res.json(result);
+  response.json(result);
 });
 
 app.listen(PORT);
