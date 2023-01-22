@@ -82,42 +82,14 @@ app.post("/criarDoador", async (req, res) => {
 });
 
 app.post("/cadastrarDoacao", async (req, res) => {
-  const nome = req.body.nome;
-  const end = req.body.endereco;
-  const num = req.body.numero;
-  const bairro = req.body.bairro;
-  const cep = req.body.cep;
-  const cidade = req.body.cidade;
-  const uf = req.body.uf;
-  const tel = req.body.telefone;
-  const vac = req.body.vacina;
-  const idade = req.body.idade;
-  const tipoSanguineo = req.body.tipoSanguineo;
-  const sexo = req.body.sexo;
-  const doenca = req.body.doenca;
-
-  console.log(tipoSanguineo);
+  const { dataDoacao, doadorId, hemocentroId } = req.body;
 
   const result = await pool.query(
-    "INSERT INTO Doadores(nome, endereco, numero, bairro, cep, cidade, uf, telefone, vacina, idade, tipoSanguineo, sexo, doenca) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?)",
-    [
-      nome,
-      end,
-      num,
-      bairro,
-      cep,
-      cidade,
-      uf,
-      tel,
-      vac,
-      idade,
-      tipoSanguineo,
-      sexo,
-      doenca,
-    ]
+    "INSERT INTO Doacoes(dataDoacao, doadorID, hemocentroID) VALUES (?, ?, ?)",
+    [dataDoacao, doadorId, hemocentroId]
   );
 
-  res.json([result]);
+  res.json(result);
 });
 
 app.listen(PORT);
