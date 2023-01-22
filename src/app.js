@@ -78,7 +78,7 @@ app.post("/criarDoador", async (req, res) => {
     ]
   );
 
-  res.json(result);
+  res.status(201).json(result);
 });
 
 app.post("/cadastrarDoacao", async (req, res) => {
@@ -88,6 +88,8 @@ app.post("/cadastrarDoacao", async (req, res) => {
     "INSERT INTO Doacoes(dataDoacao, doadorID, hemocentroID) VALUES (?, ?, ?)",
     [dataDoacao, doadorId, hemocentroId]
   );
+
+  console.log(req.body);
 
   res.json(result);
 });
