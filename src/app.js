@@ -52,7 +52,7 @@ app.post("/criarDoador", async (req, res) => {
   const cep = req.body.cep;
   const cidade = req.body.cidade;
   const uf = req.body.uf;
-  const tel = req.body.telefone;
+  const tel = req.body.telefone.replace("whatsapp:", "");
   const vac = req.body.vacina;
   const idade = req.body.idade;
   const tipoSanguineo = req.body.tipoSanguineo;
@@ -86,7 +86,7 @@ app.post("/cadastrarDoacao", async (req, res) => {
 
   const result = await pool.query(
     "INSERT INTO Doacoes(dataDoacao, doadorID, hemocentroID) VALUES (?, ?, ?)",
-    [dataDoacao, doadorId, hemocentroId]
+    [dataDoacao.split("T")[0], doadorId, hemocentroId]
   );
 
   console.log(req.body);
