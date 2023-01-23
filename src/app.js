@@ -95,9 +95,9 @@ app.post("/cadastrarDoacao", async (req, res) => {
 });
 
 app.delete("/doadores/:id", async (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
 
-  const result = await pool.query("DELETE FROM Doadores WHERE doadorID = ?", [
+  const result = await pool.query("DELETE FROM Doacoes WHERE doadorID = ?", [
     id,
   ]);
 
